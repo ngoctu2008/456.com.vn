@@ -34,13 +34,13 @@ if ($nv_Request->isset_request('ajax_action', 'post')) {
         }
 
         // Get Session
-        $sql = "SELECT id, userid FROM " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_chat_sessions WHERE session_token=" . $db->quote($session_token);
+        $sql = "SELECT id, userid FROM `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_chat_sessions` WHERE session_token=" . $db->quote($session_token);
         $row = $db->query($sql)->fetch();
 
         if (!$row || $row['userid'] != $user_info['userid']) {
              // Create new session if not exists or invalid
              $session_token = md5(uniqid($user_info['userid'], true));
-             $stmt = $db->prepare("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_chat_sessions (userid, session_token, created_at) VALUES (:userid, :session_token, :created_at)");
+             $stmt = $db->prepare("INSERT INTO `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_chat_sessions` (userid, session_token, created_at) VALUES (:userid, :session_token, :created_at)");
              $stmt->bindParam(':userid', $user_info['userid'], PDO::PARAM_INT);
              $stmt->bindParam(':session_token', $session_token, PDO::PARAM_STR);
              $stmt->bindParam(':created_at', NV_CURRENTTIME, PDO::PARAM_INT);
@@ -51,14 +51,14 @@ if ($nv_Request->isset_request('ajax_action', 'post')) {
         }
 
         // Save User Message
-        $stmt = $db->prepare("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_chat_messages (session_id, sender, message, timestamp) VALUES (:session_id, 'user', :message, :timestamp)");
+        $stmt = $db->prepare("INSERT INTO `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_chat_messages` (session_id, sender, message, timestamp) VALUES (:session_id, 'user', :message, :timestamp)");
         $stmt->bindParam(':session_id', $session_id, PDO::PARAM_INT);
         $stmt->bindParam(':message', $message, PDO::PARAM_STR);
         $stmt->bindParam(':timestamp', NV_CURRENTTIME, PDO::PARAM_INT);
         $stmt->execute();
 
         // Get User Holland Context
-        $sql_res = "SELECT scores_json, dominant_group FROM " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_results WHERE userid=" . $user_info['userid'] . " ORDER BY test_date DESC LIMIT 1";
+        $sql_res = "SELECT scores_json, dominant_group FROM `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_results` WHERE userid=" . $user_info['userid'] . " ORDER BY test_date DESC LIMIT 1";
         $res_row = $db->query($sql_res)->fetch();
 
         $context = "Student Name: " . $user_info['first_name'];
@@ -75,7 +75,7 @@ if ($nv_Request->isset_request('ajax_action', 'post')) {
         $ai_response = call_ai_api($api_key, $model, $system_prompt, $context, $message);
 
         // Save AI Response
-        $stmt = $db->prepare("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_chat_messages (session_id, sender, message, timestamp) VALUES (:session_id, 'ai', :message, :timestamp)");
+        $stmt = $db->prepare("INSERT INTO `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_chat_messages` (session_id, sender, message, timestamp) VALUES (:session_id, 'ai', :message, :timestamp)");
         $stmt->bindParam(':session_id', $session_id, PDO::PARAM_INT);
         $stmt->bindParam(':message', $ai_response, PDO::PARAM_STR);
         $stmt->bindParam(':timestamp', NV_CURRENTTIME, PDO::PARAM_INT);

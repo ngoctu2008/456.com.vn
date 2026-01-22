@@ -19,7 +19,7 @@ if (!defined('NV_IS_USER')) {
 $id = $nv_Request->get_int('id', 'get', 0);
 if ($id == 0) {
     // Get latest result
-    $sql = "SELECT id FROM " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_results WHERE userid=" . $user_info['userid'] . " ORDER BY test_date DESC LIMIT 1";
+    $sql = "SELECT id FROM `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_results` WHERE userid=" . $user_info['userid'] . " ORDER BY test_date DESC LIMIT 1";
     $result = $db->query($sql);
     $row = $result->fetch();
     if ($row) {
@@ -31,7 +31,7 @@ if ($id == 0) {
     }
 }
 
-$sql = "SELECT * FROM " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_results WHERE id=" . $id . " AND userid=" . $user_info['userid'];
+$sql = "SELECT * FROM `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_results` WHERE id=" . $id . " AND userid=" . $user_info['userid'];
 $row = $db->query($sql)->fetch();
 
 if (!$row) {

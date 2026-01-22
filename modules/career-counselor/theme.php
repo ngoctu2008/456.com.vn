@@ -77,6 +77,7 @@ function nv_theme_career_counselor_chat($module_data) {
         while ($msg = $result->fetch()) {
             $msg['sender_class'] = ($msg['sender'] == 'user') ? 'user' : 'ai';
             $msg['sender_name'] = ($msg['sender'] == 'user') ? $lang_module['you'] : 'AI';
+            $msg['message'] = htmlspecialchars($msg['message']);
             $xtpl->assign('MSG', $msg);
             $xtpl->parse('main.message_loop');
         }

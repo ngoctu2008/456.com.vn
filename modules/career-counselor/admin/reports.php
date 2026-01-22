@@ -17,7 +17,7 @@ $xtpl = new XTemplate("reports.tpl", NV_ROOTDIR . "/themes/" . $global_config['a
 $xtpl->assign('LANG', $lang_module);
 $xtpl->assign('GLANG', $lang_global);
 
-$sql = "SELECT r.*, u.username, u.first_name, u.last_name FROM " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_results r LEFT JOIN " . $db_config['prefix'] . "_users u ON r.userid = u.userid ORDER BY r.test_date DESC";
+$sql = "SELECT r.*, u.username, u.first_name, u.last_name FROM `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_results` r LEFT JOIN " . $db_config['prefix'] . "_users u ON r.userid = u.userid ORDER BY r.test_date DESC";
 $result = $db->query($sql);
 
 while ($row = $result->fetch()) {

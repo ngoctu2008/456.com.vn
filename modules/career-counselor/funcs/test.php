@@ -28,7 +28,7 @@ if ($nv_Request->isset_request('submit_test', 'post')) {
 
     // Fetch all questions to map ID to group_code
     $questions = array();
-    $sql = "SELECT id, group_code, weight FROM " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_questions WHERE status=1";
+    $sql = "SELECT id, group_code, weight FROM `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_questions` WHERE status=1";
     $result = $db->query($sql);
     while ($row = $result->fetch()) {
         $questions[$row['id']] = $row;
@@ -51,7 +51,7 @@ if ($nv_Request->isset_request('submit_test', 'post')) {
 
     $scores_json = json_encode($scores);
 
-    $sql = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_results
+    $sql = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_results`
             (userid, test_date, scores_json, dominant_group, summary_text)
             VALUES (:userid, :test_date, :scores_json, :dominant_group, '')";
 

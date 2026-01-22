@@ -32,7 +32,7 @@ while ($item = $result->fetch()) {
 $sql_create_module = $sql_drop_module;
 
 // Table _questions
-$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_questions (
+$sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_questions` (
     id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
     content text NOT NULL,
     group_code varchar(1) NOT NULL,
@@ -43,7 +43,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
 ) ENGINE=MyISAM";
 
 // Table _results
-$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_results (
+$sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_results` (
     id int(11) unsigned NOT NULL AUTO_INCREMENT,
     userid int(11) unsigned NOT NULL DEFAULT '0',
     test_date int(11) unsigned NOT NULL DEFAULT '0',
@@ -55,7 +55,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
 ) ENGINE=MyISAM";
 
 // Table _chat_sessions
-$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_chat_sessions (
+$sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_chat_sessions` (
     id int(11) unsigned NOT NULL AUTO_INCREMENT,
     userid int(11) unsigned NOT NULL DEFAULT '0',
     session_token varchar(255) NOT NULL,
@@ -66,7 +66,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
 ) ENGINE=MyISAM";
 
 // Table _chat_messages
-$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_chat_messages (
+$sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_chat_messages` (
     id int(11) unsigned NOT NULL AUTO_INCREMENT,
     session_id int(11) unsigned NOT NULL DEFAULT '0',
     sender varchar(10) NOT NULL DEFAULT 'user',
@@ -77,7 +77,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
 ) ENGINE=MyISAM";
 
 // Table _career_data
-$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_career_data (
+$sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_career_data` (
     id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
     title varchar(250) NOT NULL,
     content text,

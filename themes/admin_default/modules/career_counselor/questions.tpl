@@ -50,7 +50,7 @@
                         <td>{ROW.weight}</td>
                         <td>
                             <a href="{ROW.link_edit}" class="btn btn-xs btn-info"><i class="fa fa-edit"></i></a>
-                            <a href="{ROW.link_delete}" class="btn btn-xs btn-danger" onclick="return confirm('{LANG.confirm_delete}');"><i class="fa fa-trash"></i></a>
+                            <a href="javascript:void(0);" class="btn btn-xs btn-danger" onclick="nv_del_question({ROW.id});"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <!-- END: loop -->
@@ -59,4 +59,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    function nv_del_question(id) {
+        if (confirm('{LANG.confirm_delete}')) {
+            $.post('{URL_SUBMIT}', 'del_id=' + id, function(res) {
+                location.reload();
+            });
+        }
+    }
+</script>
 <!-- END: main -->

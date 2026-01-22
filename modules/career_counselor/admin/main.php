@@ -14,6 +14,10 @@ if (!defined('NV_IS_FILE_ADMIN')) {
 $page_title = $lang_module['config'];
 
 if ($nv_Request->isset_request('save', 'post')) {
+    if (!nv_check_valid_request('save', 'post', '')) {
+        die('Invalid Request');
+    }
+
     $cfg = array();
     $cfg['api_key'] = $nv_Request->get_title('api_key', 'post', '');
     $cfg['api_model'] = $nv_Request->get_title('api_model', 'post', 'gpt-3.5-turbo');

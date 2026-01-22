@@ -14,8 +14,12 @@ if (!defined('NV_IS_FILE_ADMIN')) {
 $page_title = $lang_module['questions'];
 
 // Handle Delete
-if ($nv_Request->isset_request('del_id', 'get')) {
-    $id = $nv_Request->get_int('del_id', 'get', 0);
+if ($nv_Request->isset_request('del_id', 'post')) {
+    if (!nv_check_valid_request('del_id', 'post', '')) {
+         die('Invalid Request');
+    }
+
+    $id = $nv_Request->get_int('del_id', 'post', 0);
 
     if ($id > 0) {
         $db->query("DELETE FROM " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_questions WHERE id=" . $id);
@@ -64,7 +68,6 @@ $sql = "SELECT * FROM " . $db_config['prefix'] . "_" . $lang . "_" . $module_dat
 $result = $db->query($sql);
 while ($row = $result->fetch()) {
     $row['link_edit'] = NV_BASE_ADMINURL . "index.php?" . NV_LANG_VARIABLE . "=" . $lang . "&" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=questions&id=" . $row['id'];
-    $row['link_delete'] = NV_BASE_ADMINURL . "index.php?" . NV_LANG_VARIABLE . "=" . $lang . "&" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=questions&del_id=" . $row['id'];
     $xtpl->assign('ROW', $row);
     $xtpl->parse('main.loop');
 }

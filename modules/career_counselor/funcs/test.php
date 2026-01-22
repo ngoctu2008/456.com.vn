@@ -17,6 +17,10 @@ if (!defined('NV_IS_USER')) {
 }
 
 if ($nv_Request->isset_request('submit_test', 'post')) {
+    if (!nv_check_valid_request('submit_test', 'post', '')) {
+         die('Invalid Request');
+    }
+
     $answers = $nv_Request->get_array('answers', 'post', array());
 
     // Calculate Scores

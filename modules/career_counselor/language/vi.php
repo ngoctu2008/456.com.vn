@@ -17,20 +17,20 @@ $lang_translator['copyright'] = '@Copyright (C) 2024';
 $lang_translator['info'] = '';
 $lang_translator['langtype'] = 'lang_module';
 
-$lang_module['welcome_title'] = 'Career Counseling System';
-$lang_module['welcome_desc'] = 'Take the Holland test to discover your career personality and chat with our AI Counselor.';
-$lang_module['start_test'] = 'Start Assessment';
+$lang_module['welcome_title'] = 'Hệ thống Tư vấn Hướng nghiệp';
+$lang_module['welcome_desc'] = 'Thực hiện bài kiểm tra Holland để khám phá tính cách nghề nghiệp của bạn và trò chuyện với Chuyên gia tư vấn AI.';
+$lang_module['start_test'] = 'Bắt đầu kiểm tra';
 
-$lang_module['holland_test_title'] = 'Holland Personality Test';
-$lang_module['holland_test_desc'] = 'Check the boxes that describe you.';
-$lang_module['submit_test'] = 'Submit Answers';
+$lang_module['holland_test_title'] = 'Trắc nghiệm tính cách Holland';
+$lang_module['holland_test_desc'] = 'Đánh dấu vào những ô mô tả đúng về bạn.';
+$lang_module['submit_test'] = 'Gửi câu trả lời';
 
-$lang_module['your_result'] = 'Your Personality Profile';
-$lang_module['holland_score'] = 'Holland Score';
-$lang_module['dominant_type'] = 'Your Type';
-$lang_module['chat_with_counselor'] = 'Chat with AI Counselor';
+$lang_module['your_result'] = 'Hồ sơ tính cách của bạn';
+$lang_module['holland_score'] = 'Điểm Holland';
+$lang_module['dominant_type'] = 'Nhóm nổi bật';
+$lang_module['chat_with_counselor'] = 'Trò chuyện với Chuyên gia AI';
 
-$lang_module['ai_counselor'] = 'AI Career Counselor';
-$lang_module['type_message'] = 'Type your message here...';
-$lang_module['send'] = 'Send';
-$lang_module['you'] = 'You';
+$lang_module['ai_counselor'] = 'Chuyên gia tư vấn AI';
+$lang_module['type_message'] = 'Nhập tin nhắn của bạn...';
+$lang_module['send'] = 'Gửi';
+$lang_module['you'] = 'Bạn';

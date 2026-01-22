@@ -17,6 +17,11 @@ if (!defined('NV_IS_USER')) {
 
 // Handle AJAX Request
 if ($nv_Request->isset_request('ajax_action', 'post')) {
+    // For AJAX, we often skip standard nv_check_valid_request if not using a form token,
+    // but relying on user login and session match is good.
+    // However, if we want strict CSRF, we need to pass the token in JS.
+    // For this implementation, we will verify the session_token which acts as a form of specialized CSRF token for this chat.
+
     $action = $nv_Request->get_string('ajax_action', 'post', '');
 
     if ($action == 'send_message') {

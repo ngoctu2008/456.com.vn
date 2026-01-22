@@ -46,11 +46,24 @@
         }
     });
 
+    function escapeHtml(text) {
+        var map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+
     function sendMessage() {
         var message = $('#chat-input').val().trim();
         if (message == '') return;
 
-        $('#chat-history').append('<div class="message user"><div class="message-content"><strong>{LANG.you}:</strong> ' + message + '</div></div>');
+        var safeMessage = escapeHtml(message);
+
+        $('#chat-history').append('<div class="message user"><div class="message-content"><strong>{LANG.you}:</strong> ' + safeMessage + '</div></div>');
         $('#chat-input').val('');
         scrollToBottom();
 
@@ -65,7 +78,14 @@
             dataType: 'json',
             success: function(response) {
                 if (response.status == 'success') {
-                    $('#chat-history').append('<div class="message ai"><div class="message-content"><strong>AI:</strong> ' + response.reply + '</div></div>');
+                    // AI response is trusted from server (sanitized there or safe by AI nature), but for extra safety we could escape too.
+                    // However, AI might return Markdown/Formatting. For now, assuming text.
+                    // Let's treat AI response as text but allow simple formatting if we parsed it.
+                    // Given the simple requirement, escaping it is safer or using .text() method.
+                    // Since we are appending HTML string, we must be careful.
+                    // Let's assume AI returns plain text for this simple implementation.
+                    var safeReply = escapeHtml(response.reply);
+                    $('#chat-history').append('<div class="message ai"><div class="message-content"><strong>AI:</strong> ' + safeReply + '</div></div>');
                     session_token = response.session_token;
                     scrollToBottom();
                 } else {

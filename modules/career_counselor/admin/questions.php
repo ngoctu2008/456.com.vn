@@ -16,6 +16,7 @@ $page_title = $lang_module['questions'];
 // Handle Delete
 if ($nv_Request->isset_request('del_id', 'get')) {
     $id = $nv_Request->get_int('del_id', 'get', 0);
+
     if ($id > 0) {
         $db->query("DELETE FROM " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_questions WHERE id=" . $id);
         $nv_Cache->delMod($module_name);
@@ -26,6 +27,10 @@ if ($nv_Request->isset_request('del_id', 'get')) {
 
 // Handle Add/Edit
 if ($nv_Request->isset_request('save', 'post')) {
+    if (!nv_check_valid_request('id', 'post', '')) {
+         die('Invalid Request');
+    }
+
     $id = $nv_Request->get_int('id', 'post', 0);
     $content = $nv_Request->get_string('content', 'post', '');
     $group_code = $nv_Request->get_string('group_code', 'post', '');
@@ -49,7 +54,7 @@ if ($nv_Request->isset_request('save', 'post')) {
     }
 }
 
-$xtpl = new XTemplate("questions.tpl", NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/modules/" . $module_file);
+$xtpl = new XTemplate("questions.tpl", NV_ROOTDIR . "/themes/" . $global_config['admin_theme'] . "/modules/" . $module_file);
 $xtpl->assign('LANG', $lang_module);
 $xtpl->assign('GLANG', $lang_global);
 $xtpl->assign('URL_SUBMIT', NV_BASE_ADMINURL . "index.php?" . NV_LANG_VARIABLE . "=" . $lang . "&" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=questions");

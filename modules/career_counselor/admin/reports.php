@@ -13,7 +13,7 @@ if (!defined('NV_IS_FILE_ADMIN')) {
 
 $page_title = $lang_module['reports'];
 
-$xtpl = new XTemplate("reports.tpl", NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/modules/" . $module_file);
+$xtpl = new XTemplate("reports.tpl", NV_ROOTDIR . "/themes/" . $global_config['admin_theme'] . "/modules/" . $module_file);
 $xtpl->assign('LANG', $lang_module);
 $xtpl->assign('GLANG', $lang_global);
 
